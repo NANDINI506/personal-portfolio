@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #a855f7;
+  --color-primary-glow: rgba(168, 85, 247, 0.5);
+  --color-secondary: #0ea5e9;
+  --color-background-start: #030014;
+  --color-background-end: #0a0a0a;
+  --font-sans: 'Space Grotesk', 'Satoshi', 'Inter', sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 100%;
+  }
+
+  body {
+    @apply bg-[#030014] text-white overflow-x-hidden;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+  }
+
+  /* Custom scrollbar for premium feel */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #030014;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #a855f7;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0ea5e9;
+  }
+
+  /* Smooth selection */
+  ::selection {
+    background-color: rgba(168, 85, 247, 0.3);
+    color: white;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+  
+  .glass-card {
+    @apply bg-black/40 backdrop-blur-xl border border-white/10 hover:border-purple-500/50 transition-colors duration-300;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400;
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  }
+}
