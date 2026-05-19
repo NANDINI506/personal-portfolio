@@ -19,53 +19,74 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
-        >
-          Hi, I'm <span className="text-gradient">Nandini</span>
-        </motion.h1>
+        <div className="flex flex-col items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 flex flex-wrap justify-center gap-x-4"
+          >
+            <span>Hi, I'm</span>
+            <div className="flex">
+              {"Nandini".split("").map((letter, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, y: 50, rotateX: -90 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 + index * 0.1, type: "spring", bounce: 0.4 }}
+                  className="text-gradient inline-block"
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 1.5, type: "spring" }}
           className="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl font-light"
         >
-          Software Engineer <span className="text-purple-500">•</span> MERN Developer <span className="text-cyan-500">•</span> AI Enthusiast
+          Software Engineer <span className="text-purple-500 mx-2">•</span> MERN Developer <span className="text-cyan-500 mx-2">•</span> AI Enthusiast
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-4"
+          transition={{ duration: 0.8, delay: 1.8 }}
+          className="flex flex-wrap items-center justify-center gap-6"
         >
-          <a
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href="#projects"
-            className="group flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition-all"
+            className="interactive group flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-semibold shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-shadow"
           >
             View Projects
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </motion.a>
           
-          <a
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href="/resume.pdf"
-            className="group flex items-center gap-2 px-8 py-4 glass text-white rounded-full font-semibold hover:bg-white/10 transition-all border border-white/10"
+            className="interactive group flex items-center gap-2 px-8 py-4 glass text-white rounded-full font-semibold hover:bg-white/10 transition-all border border-white/10"
           >
             Download Resume
             <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
+            whileHover={{ scale: 1.05, textShadow: "0 0 8px rgb(34 211 238)" }}
+            whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="group flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white hover:text-cyan-400 transition-colors"
+            className="interactive group flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white hover:text-cyan-400 transition-colors"
           >
             Contact Me
             <Mail className="w-4 h-4" />
-          </a>
+          </motion.a>
         </motion.div>
       </div>
       

@@ -30,7 +30,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#home" className="text-2xl font-bold text-gradient">
+        <a href="#home" className="interactive text-2xl font-bold text-gradient">
           Nandini.
         </a>
 
@@ -39,14 +39,14 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-gray-300 hover:text-white transition-colors text-sm font-medium tracking-wide"
+              className="interactive text-gray-300 hover:text-white hover:scale-110 transition-all text-sm font-medium tracking-wide"
             >
               {link.name}
             </a>
           ))}
           <a
             href="#contact"
-            className="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all text-sm font-medium"
+            className="interactive px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 hover:scale-105 border border-white/20 text-white transition-all text-sm font-medium"
           >
             Hire Me
           </a>

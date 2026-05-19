@@ -18,6 +18,11 @@
   body {
     @apply bg-[#030014] text-white overflow-x-hidden;
     font-family: 'Space Grotesk', 'Inter', sans-serif;
+    cursor: none;
+  }
+
+  a, button {
+    cursor: none;
   }
 
   /* Custom scrollbar for premium feel */

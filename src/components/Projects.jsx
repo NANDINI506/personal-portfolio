@@ -70,11 +70,12 @@ export default function Projects() {
           {projects.map((project, idx) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="glass-card rounded-2xl overflow-hidden group"
+              transition={{ delay: idx * 0.1, type: "spring", bounce: 0.3 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="glass-card rounded-2xl overflow-hidden group shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_40px_rgba(168,85,247,0.2)] transition-all duration-300"
             >
               <div className="relative h-56 overflow-hidden">
                 <div className="absolute inset-0 bg-black/50 group-hover:bg-transparent transition-colors duration-500 z-10" />
@@ -86,13 +87,13 @@ export default function Projects() {
                 <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
                   <a
                     href={project.liveUrl}
-                    className="p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-purple-500 transition-colors"
+                    className="interactive p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-purple-500 hover:scale-110 transition-all duration-300"
                   >
                     <ExternalLink className="w-5 h-5" />
                   </a>
                   <a
                     href={project.githubUrl}
-                    className="p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-cyan-500 transition-colors"
+                    className="interactive p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-cyan-500 hover:scale-110 transition-all duration-300"
                   >
                     <Code2 className="w-5 h-5" />
                   </a>

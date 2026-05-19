@@ -6,10 +6,14 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import WhyHireMe from './components/WhyHireMe';
 import Contact from './components/Contact';
+import CustomCursor from './components/CustomCursor';
+import ScrollProgress from './components/ScrollProgress';
 
 function App() {
   return (
     <div className="bg-[#030014] min-h-screen text-white font-sans selection:bg-purple-500/30">
+      <CustomCursor />
+      <ScrollProgress />
       <Navbar />
       
       <main className="relative">
