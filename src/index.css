@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #a855f7;
-  --color-primary-glow: rgba(168, 85, 247, 0.5);
-  --color-secondary: #0ea5e9;
-  --color-background-start: #030014;
-  --color-background-end: #0a0a0a;
+  --color-primary: #10b981;
+  --color-primary-glow: rgba(16, 185, 129, 0.5);
+  --color-secondary: #0f766e;
+  --color-background-start: #020f08;
+  --color-background-end: #010604;
   --font-sans: 'Space Grotesk', 'Satoshi', 'Inter', sans-serif;
 }
 
@@ -16,13 +16,8 @@
   }
 
   body {
-    @apply bg-[#030014] text-white overflow-x-hidden;
+    @apply bg-[#020f08] text-white overflow-x-hidden;
     font-family: 'Space Grotesk', 'Inter', sans-serif;
-    cursor: none;
-  }
-
-  a, button {
-    cursor: none;
   }
 
   /* Custom scrollbar for premium feel */
@@ -30,19 +25,19 @@
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #030014;
+    background: #020f08;
   }
   ::-webkit-scrollbar-thumb {
-    background: #a855f7;
+    background: #10b981;
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #0ea5e9;
+    background: #0f766e;
   }
 
   /* Smooth selection */
   ::selection {
-    background-color: rgba(168, 85, 247, 0.3);
+    background-color: rgba(16, 185, 129, 0.3);
     color: white;
   }
 }
@@ -53,14 +48,33 @@
   }
   
   .glass-card {
-    @apply bg-black/40 backdrop-blur-xl border border-white/10 hover:border-purple-500/50 transition-colors duration-300;
+    @apply bg-black/40 backdrop-blur-xl border border-white/10 hover:border-emerald-600/50 transition-colors duration-300;
   }
   
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-teal-400;
   }
   
   .glow-text {
-    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
   }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Custom animations */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 15s ease infinite;
+  background-size: 200% 200%;
 }
