@@ -54,7 +54,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 relative z-10">
+    <section id="projects" className="py-28 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,8 +62,8 @@ export default function Projects() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Featured <span className="text-gradient">Projects</span></h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 mx-auto rounded-full" />
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-sans">Featured <span className="text-gradient">Projects</span></h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -73,42 +73,55 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, type: "spring", bounce: 0.3 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="glass-card rounded-2xl overflow-hidden group shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_40px_rgba(168,85,247,0.2)] transition-all duration-300"
+              transition={{ delay: idx * 0.1, type: "spring", bounce: 0.2 }}
+              className="group relative rounded-3xl overflow-hidden bg-[#0c0822]/40 border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:border-purple-500/30 hover:shadow-[0_20px_50px_rgba(139,92,246,0.2)] transition-all duration-500 flex flex-col h-[420px]"
             >
-              <div className="relative h-56 overflow-hidden">
-                <div className="absolute inset-0 bg-black/50 group-hover:bg-transparent transition-colors duration-500 z-10" />
+              {/* Card Image Container */}
+              <div className="relative w-full h-[60%] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-transparent to-transparent opacity-90 z-10" />
+                <div className="absolute inset-0 bg-purple-950/20 mix-blend-overlay z-10" />
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
+                
+                {/* Floating links on top right */}
+                <div className="absolute top-4 right-4 flex gap-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <a
                     href={project.liveUrl}
-                    className="interactive p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-purple-500 hover:scale-110 transition-all duration-300"
+                    className="interactive p-2.5 bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-white hover:bg-purple-600 hover:border-purple-400 hover:scale-110 transition-all"
+                    title="Live Demo"
                   >
-                    <ExternalLink className="w-5 h-5" />
+                    <ExternalLink className="w-4 h-4" />
                   </a>
                   <a
                     href={project.githubUrl}
-                    className="interactive p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-cyan-500 hover:scale-110 transition-all duration-300"
+                    className="interactive p-2.5 bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-white hover:bg-cyan-600 hover:border-cyan-400 hover:scale-110 transition-all"
+                    title="Source Code"
                   >
-                    <Code2 className="w-5 h-5" />
+                    <Code2 className="w-4 h-4" />
                   </a>
                 </div>
               </div>
               
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">{project.description}</p>
+              {/* Card Info Container */}
+              <div className="p-6 flex flex-col flex-grow justify-between relative z-20 bg-[#0c0822]/60 backdrop-blur-md border-t border-white/5">
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors font-sans tracking-wide">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
                 
-                <div className="flex flex-wrap gap-2">
+                {/* Tech Pills */}
+                <div className="flex flex-wrap gap-1.5 mt-auto">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 text-xs font-medium rounded-md bg-white/5 text-purple-300 border border-purple-500/20"
+                      className="px-2.5 py-1 text-xs font-semibold font-mono rounded-md bg-purple-500/10 text-purple-300 border border-purple-500/20"
                     >
                       {tech}
                     </span>

@@ -69,26 +69,26 @@ const OrbitNode = ({ radius, duration, reverse, classes, icon: Icon, startAngle 
 const OrbitingIdentity = () => {
   return (
     <div className="relative w-full h-full min-h-[300px] md:min-h-[400px] flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 to-cyan-500/10 blur-3xl opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-cyan-500/5 blur-3xl opacity-50" />
       
-      <div className="relative z-10 w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500 p-[2px] animate-pulse shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+      <div className="relative z-10 w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500 p-[2px] animate-pulse shadow-[0_0_35px_rgba(168,85,247,0.6)]">
         <div className="w-full h-full rounded-full bg-black flex items-center justify-center border border-white/10">
           <Code2 className="w-10 h-10 text-white" />
         </div>
       </div>
       
       <div className="absolute inset-0 flex items-center justify-center scale-75 md:scale-100">
-        <div className="absolute w-40 h-40 border border-cyan-500/20 rounded-full" />
+        <div className="absolute w-40 h-40 border border-cyan-500/10 rounded-full" />
         <OrbitNode radius={80} duration={12} startAngle={0} classes="border-cyan-500/50 text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]" icon={Layers} />
         <OrbitNode radius={80} duration={12} startAngle={180} classes="border-purple-500/50 text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.4)]" icon={Cpu} />
 
-        <div className="absolute w-64 h-64 border border-emerald-500/20 rounded-full border-dashed" />
-        <OrbitNode radius={128} duration={20} reverse startAngle={90} classes="border-emerald-500/50 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.4)]" icon={DatabaseIcon} />
-        <OrbitNode radius={128} duration={20} reverse startAngle={270} classes="border-pink-500/50 text-pink-400 shadow-[0_0_15px_rgba(236,72,153,0.4)]" icon={Terminal} />
+        <div className="absolute w-64 h-64 border border-pink-500/10 rounded-full border-dashed" />
+        <OrbitNode radius={128} duration={20} reverse startAngle={90} classes="border-pink-500/50 text-pink-400 shadow-[0_0_15px_rgba(236,72,153,0.4)]" icon={DatabaseIcon} />
+        <OrbitNode radius={128} duration={20} reverse startAngle={270} classes="border-indigo-500/50 text-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.4)]" icon={Terminal} />
         
-        <div className="absolute w-96 h-96 border border-amber-500/10 rounded-full" />
-        <OrbitNode radius={192} duration={30} startAngle={45} classes="border-amber-500/50 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.4)]" icon={Rocket} />
-        <OrbitNode radius={192} duration={30} startAngle={225} classes="border-blue-500/50 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.4)]" icon={Globe} />
+        <div className="absolute w-96 h-96 border border-purple-500/5 rounded-full" />
+        <OrbitNode radius={192} duration={30} startAngle={45} classes="border-purple-500/50 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.4)]" icon={Rocket} />
+        <OrbitNode radius={192} duration={30} startAngle={225} classes="border-cyan-500/50 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.4)]" icon={Globe} />
       </div>
     </div>
   );
@@ -117,20 +117,20 @@ const BentoCard = ({ title, icon: Icon, children, className, glowColor, progress
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`relative overflow-hidden rounded-3xl bg-black/40 border border-white/10 backdrop-blur-md group ${className}`}
+      className={`relative overflow-hidden rounded-3xl bg-[#0c0822]/40 border border-white/5 backdrop-blur-md group ${className}`}
     >
       <div 
         className="pointer-events-none absolute -inset-px transition-opacity duration-500 z-0"
         style={{
           opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, ${glowColor}, transparent 40%)`
+          background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, ${glowColor}, transparent 55%)`
         }}
       />
       
       <div className="relative z-10 p-6 sm:p-8 h-full flex flex-col">
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 rounded-xl bg-black/50 border border-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300">
-            <Icon className="w-6 h-6 text-white" />
+          <div className="p-3 rounded-xl bg-black/50 border border-white/5 shadow-lg group-hover:scale-110 group-hover:border-purple-500/25 transition-all duration-300">
+            <Icon className="w-6 h-6 text-purple-400 group-hover:text-cyan-400 transition-colors" />
           </div>
           <h3 className="text-xl font-bold text-white tracking-wide">{title}</h3>
         </div>
@@ -166,7 +166,7 @@ const BentoCard = ({ title, icon: Icon, children, className, glowColor, progress
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 relative z-10 font-sans">
+    <section id="skills" className="py-28 relative z-10 font-sans">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -178,13 +178,13 @@ export default function Skills() {
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/20 blur-[100px] rounded-full pointer-events-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none"
           />
           <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-white font-sans">
-            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Universe</span>
+            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Universe</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            A comprehensive ecosystem of technologies I leverage to build scalable, high-performance, and award-winning applications.
+            A comprehensive ecosystem of technologies I leverage to build scalable, high-performance, and intelligent MERN applications.
           </p>
         </motion.div>
 
@@ -192,19 +192,19 @@ export default function Skills() {
           <BentoCard 
             title="Frontend" 
             icon={Layout} 
-            className="md:col-span-2 md:row-span-1"
+            className="md:col-span-2 md:row-span-1 border border-white/5"
             glowColor="rgba(6, 182, 212, 0.15)"
             progressColor="#06b6d4"
             progress={95}
           >
             <div className="flex flex-wrap gap-2">
               {skillData.frontend.map(skill => (
-                <SkillPill key={skill} name={skill} glowColor="rgba(6,182,212,0.5)" borderColor="#06b6d4" />
+                <SkillPill key={skill} name={skill} glowColor="rgba(6,182,212,0.4)" borderColor="#06b6d4" />
               ))}
             </div>
           </BentoCard>
 
-          <div className="md:col-span-2 md:row-span-2 overflow-hidden rounded-3xl bg-black/40 border border-white/10 backdrop-blur-md relative flex items-center justify-center min-h-[300px] md:min-h-[400px] group">
+          <div className="md:col-span-2 md:row-span-2 overflow-hidden rounded-3xl bg-[#0c0822]/40 border border-white/5 backdrop-blur-md relative flex items-center justify-center min-h-[300px] md:min-h-[400px] group">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 group-hover:opacity-100 opacity-50 transition-opacity duration-500" />
             <OrbitingIdentity />
           </div>
@@ -212,14 +212,14 @@ export default function Skills() {
           <BentoCard 
             title="Backend" 
             icon={Server} 
-            className="md:col-span-1 md:row-span-2"
-            glowColor="rgba(16, 185, 129, 0.15)"
-            progressColor="#10b981"
+            className="md:col-span-1 md:row-span-2 border border-white/5"
+            glowColor="rgba(139, 92, 246, 0.15)"
+            progressColor="#8b5cf6"
             progress={90}
           >
             <div className="flex flex-wrap gap-2">
               {skillData.backend.map(skill => (
-                <SkillPill key={skill} name={skill} glowColor="rgba(16,185,129,0.5)" borderColor="#10b981" />
+                <SkillPill key={skill} name={skill} glowColor="rgba(139,92,246,0.4)" borderColor="#8b5cf6" />
               ))}
             </div>
           </BentoCard>
@@ -227,14 +227,14 @@ export default function Skills() {
           <BentoCard 
             title="AI & Integrations" 
             icon={BrainCircuit} 
-            className="md:col-span-1 md:row-span-2"
-            glowColor="rgba(168, 85, 247, 0.15)"
-            progressColor="#a855f7"
+            className="md:col-span-1 md:row-span-2 border border-white/5"
+            glowColor="rgba(236, 72, 153, 0.15)"
+            progressColor="#ec4899"
             progress={85}
           >
             <div className="flex flex-wrap gap-2">
               {skillData.ai.map(skill => (
-                <SkillPill key={skill} name={skill} glowColor="rgba(168,85,247,0.5)" borderColor="#a855f7" />
+                <SkillPill key={skill} name={skill} glowColor="rgba(236,72,153,0.4)" borderColor="#ec4899" />
               ))}
             </div>
           </BentoCard>
@@ -242,14 +242,14 @@ export default function Skills() {
           <BentoCard 
             title="Database & Cloud" 
             icon={DatabaseIcon} 
-            className="md:col-span-1 md:row-span-1"
-            glowColor="rgba(236, 72, 153, 0.15)"
-            progressColor="#ec4899"
+            className="md:col-span-1 md:row-span-1 border border-white/5"
+            glowColor="rgba(99, 102, 241, 0.15)"
+            progressColor="#6366f1"
             progress={88}
           >
             <div className="flex flex-wrap gap-2">
               {skillData.database.map(skill => (
-                <SkillPill key={skill} name={skill} glowColor="rgba(236,72,153,0.5)" borderColor="#ec4899" />
+                <SkillPill key={skill} name={skill} glowColor="rgba(99,102,241,0.4)" borderColor="#6366f1" />
               ))}
             </div>
           </BentoCard>
@@ -257,14 +257,14 @@ export default function Skills() {
           <BentoCard 
             title="Tools & DevOps" 
             icon={Wrench} 
-            className="md:col-span-1 md:row-span-1"
-            glowColor="rgba(245, 158, 11, 0.15)"
-            progressColor="#f59e0b"
+            className="md:col-span-1 md:row-span-1 border border-white/5"
+            glowColor="rgba(168, 85, 247, 0.15)"
+            progressColor="#a855f7"
             progress={92}
           >
             <div className="flex flex-wrap gap-2">
               {skillData.tools.map(skill => (
-                <SkillPill key={skill} name={skill} glowColor="rgba(245,158,11,0.5)" borderColor="#f59e0b" />
+                <SkillPill key={skill} name={skill} glowColor="rgba(168,85,247,0.4)" borderColor="#a855f7" />
               ))}
             </div>
           </BentoCard>
@@ -272,14 +272,14 @@ export default function Skills() {
           <BentoCard 
             title="Currently Exploring" 
             icon={Sparkles} 
-            className="md:col-span-4"
+            className="md:col-span-4 border border-white/5"
             glowColor="rgba(59, 130, 246, 0.15)"
           >
             <div className="relative overflow-hidden w-full rounded-2xl bg-black/20 border border-white/5 p-6">
               <motion.div 
-                animate={{ top: ['-10%', '110%'] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                className="absolute left-0 right-0 h-[2px] bg-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.8)] z-0"
+                animate={{ left: ['-100%', '100%'] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+                className="absolute top-0 bottom-0 w-[150px] bg-gradient-to-r from-transparent via-purple-500/10 to-transparent blur-md z-0"
               />
               <div className="flex flex-wrap gap-4 items-center justify-center relative z-10">
                 {skillData.exploring.map((skill, idx) => (
@@ -288,9 +288,9 @@ export default function Skills() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ delay: idx * 0.1 }}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-200 hover:text-white hover:bg-blue-500/20 hover:border-blue-400 transition-all shadow-[0_0_15px_rgba(59,130,246,0.15)]"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-200 hover:text-white hover:bg-purple-500/20 hover:border-purple-400 transition-all shadow-[0_0_15px_rgba(139,92,246,0.15)]"
                   >
-                    <Sparkles className="w-4 h-4 text-blue-400" />
+                    <Sparkles className="w-4 h-4 text-purple-400" />
                     <span className="font-semibold text-sm tracking-wide">{skill}</span>
                   </motion.div>
                 ))}
