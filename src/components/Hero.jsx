@@ -1,234 +1,261 @@
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { ArrowRight, Terminal, Code2, Cpu, Globe } from 'lucide-react';
-import ParticleBackground from './ParticleBackground';
+import { motion } from "framer-motion";
+import { 
+  ArrowRight, 
+  Terminal, 
+  Code2, 
+  Cpu, 
+  Database, 
+  Brain, 
+  BarChart3, 
+  Settings, 
+  Lightbulb, 
+  Rocket 
+} from "lucide-react";
+import ParticleBackground from "./ParticleBackground";
+import avatarImg from "../assets/avatar.png";
+
+const leftFloatingCards = [
+  {
+    icon: Code2,
+    color: "text-purple-400 border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.1)] hover:border-purple-500/60 hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]",
+    yAnim: [-10, 10, -10],
+    duration: 6,
+    delay: 0,
+    offset: "translate-x-0"
+  },
+  {
+    icon: Brain,
+    color: "text-cyan-400 border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.1)] hover:border-cyan-500/60 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] md:translate-x-6",
+    yAnim: [10, -10, 10],
+    duration: 7,
+    delay: 0.5,
+    offset: "translate-x-0"
+  },
+  {
+    icon: BarChart3,
+    color: "text-emerald-400 border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)] hover:border-emerald-500/60 hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]",
+    yAnim: [-8, 8, -8],
+    duration: 6.5,
+    delay: 0.2,
+    offset: "translate-x-0"
+  }
+];
+
+const rightFloatingCards = [
+  {
+    icon: Database,
+    color: "text-pink-400 border-pink-500/20 shadow-[0_0_15px_rgba(236,72,153,0.1)] hover:border-pink-500/60 hover:shadow-[0_0_25px_rgba(236,72,153,0.4)]",
+    yAnim: [-10, 10, -10],
+    duration: 6.2,
+    delay: 0.1,
+    offset: "translate-x-0"
+  },
+  {
+    icon: Settings,
+    color: "text-amber-400 border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.1)] hover:border-amber-500/60 hover:shadow-[0_0_25px_rgba(245,158,11,0.4)] md:-translate-x-6",
+    yAnim: [10, -10, 10],
+    duration: 6.8,
+    delay: 0.3,
+    offset: "translate-x-0"
+  },
+  {
+    icon: Cpu,
+    color: "text-indigo-400 border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.1)] hover:border-indigo-500/60 hover:shadow-[0_0_25px_rgba(99,102,241,0.4)]",
+    yAnim: [-8, 8, -8],
+    duration: 7.5,
+    delay: 0.4,
+    offset: "translate-x-0"
+  }
+];
 
 export default function Hero() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth out the mouse movement for the 3D tilt
-  const smoothX = useSpring(mouseX, { damping: 30, stiffness: 200 });
-  const smoothY = useSpring(mouseY, { damping: 30, stiffness: 200 });
-
-  const rotateX = useTransform(smoothY, [-0.5, 0.5], [15, -15]);
-  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-15, 15]);
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    
-    const xPct = (e.clientX - rect.left) / width - 0.5;
-    const yPct = (e.clientY - rect.top) / height - 0.5;
-    
-    mouseX.set(xPct);
-    mouseY.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
   return (
-    <section id="home" className="relative min-h-screen w-full flex items-center overflow-hidden font-sans pt-24 lg:pt-0">
+    <section
+      id="home"
+      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden font-sans pt-20"
+    >
       <ParticleBackground />
-      
+
       {/* Massive Background Typography */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0 overflow-hidden">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.04, scale: 1 }}
+          animate={{ opacity: 0.03, scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
-          className="text-[18vw] font-black whitespace-nowrap text-white leading-none tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-transparent"
+          className="text-[20vw] font-black whitespace-nowrap text-white leading-none tracking-tighter"
         >
           NANDINI
         </motion.h1>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center py-12 lg:py-0">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 flex flex-col justify-center items-center mt-10">
         
-        {/* Left Column - Content */}
-        <div className="lg:col-span-7 flex flex-col justify-center text-left pt-10 lg:pt-0">
+        {/* Profile Circle & Floating Side Cards Container */}
+        <div className="relative flex items-center justify-center mb-6">
           
+          {/* Floating Left Icons */}
+          <div className="absolute -left-24 lg:-left-44 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-10 pointer-events-auto">
+            {leftFloatingCards.map((card, i) => {
+              const Icon = card.icon;
+              return (
+                <motion.div
+                  key={i}
+                  animate={{ y: card.yAnim }}
+                  transition={{ duration: card.duration, delay: card.delay, repeat: Infinity, ease: "easeInOut" }}
+                  className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[#0a071b]/60 backdrop-blur-md border flex items-center justify-center cursor-pointer transition-all duration-300 ${card.color} ${card.offset}`}
+                >
+                  <Icon className="w-6 h-6 md:w-8 md:h-8" />
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Center Avatar / Glowing Sphere */}
+          <div className="relative group z-10">
+            {/* Glow backdrop */}
+            <div className="absolute inset-0 bg-purple-500/20 blur-[80px] rounded-full -z-10 group-hover:bg-cyan-500/20 transition-colors duration-700"></div>
+            
+            {/* Outer neon border circle */}
+            <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full border-[3px] border-purple-500/80 shadow-[0_0_35px_rgba(168,85,247,0.5)] flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:border-cyan-400/80 group-hover:shadow-[0_0_35px_rgba(6,182,212,0.5)]">
+              {/* Inner glowing overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-cyan-500/10 opacity-30 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none z-10"></div>
+              
+              <img 
+                src={avatarImg} 
+                alt="Nandini" 
+                className="w-full h-full object-cover select-none group-hover:scale-105 transition-transform duration-700" 
+              />
+            </div>
+          </div>
+
+          {/* Floating Right Icons */}
+          <div className="absolute -right-24 lg:-right-44 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-10 pointer-events-auto">
+            {rightFloatingCards.map((card, i) => {
+              const Icon = card.icon;
+              return (
+                <motion.div
+                  key={i}
+                  animate={{ y: card.yAnim }}
+                  transition={{ duration: card.duration, delay: card.delay, repeat: Infinity, ease: "easeInOut" }}
+                  className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[#0a071b]/60 backdrop-blur-md border flex items-center justify-center cursor-pointer transition-all duration-300 ${card.color} ${card.offset}`}
+                >
+                  <Icon className="w-6 h-6 md:w-8 md:h-8" />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* System Online Status */}
+        <div className="flex items-center justify-center gap-2 mb-4 select-none font-mono">
+          <span className="text-cyan-400 text-xs md:text-sm tracking-widest flex items-center gap-2 font-bold drop-shadow-[0_0_8px_rgba(34,211,238,0.3)]">
+            <span className="text-purple-500 font-extrabold">&gt;_</span> SYSTEM_ONLINE
+          </span>
+        </div>
+
+        {/* Text and CTAs */}
+        <div className="text-center z-10 max-w-4xl px-4 relative flex flex-col items-center">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-1"
           >
-            <div className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse shadow-[0_0_10px_rgba(139,92,246,0.8)]" />
-            <span className="text-purple-400/80 font-mono text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold">
-              System.Status // Online & Crafting
-            </span>
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tight bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(255,255,255,0.1)]">
+              Nandini
+            </h1>
           </motion.div>
           
-          <div className="mb-6 relative">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tighter text-white"
-            >
-              CRAFTING<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 animate-gradient-x">
-                TOMORROW'S
-              </span><br />
-              WEB.
-            </motion.h1>
-            
-            {/* Decorative abstract shape behind text */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, delay: 0.5 }}
-              className="absolute -left-10 -top-10 w-40 h-40 bg-purple-500/20 blur-[60px] rounded-full pointer-events-none -z-10" 
-            />
-          </div>
-          
+          {/* Subtitle with faded line separators */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex items-center gap-3 w-full max-w-lg justify-center my-4"
+          >
+            <div className="h-[1.5px] flex-grow bg-gradient-to-r from-transparent via-purple-500/30 to-purple-500/70 rounded-full" />
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-500/80 shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+            <span className="text-purple-300 font-medium tracking-[0.25em] text-xs md:text-sm uppercase font-mono whitespace-nowrap">
+              Software Engineer
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-500/80 shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+            <div className="h-[1.5px] flex-grow bg-gradient-to-l from-transparent via-purple-500/30 to-purple-500/70 rounded-full" />
+          </motion.div>
+
+          {/* Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <p className="text-sm md:text-lg text-gray-400 font-light max-w-2xl mx-auto leading-relaxed mb-8">
+              Architecting <span className="text-purple-400 font-medium">Scalable Web Experiences</span> & <span className="text-cyan-400 font-medium">AI Workflows</span>
+            </p>
+          </motion.div>
+
+          {/* Action Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-10 relative"
+            className="flex flex-wrap items-center justify-center gap-4"
           >
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-500 to-cyan-500 rounded-full" />
-            <p className="text-lg md:text-xl text-gray-300 max-w-lg font-light leading-relaxed pl-6">
-              Hi, I'm <strong className="font-semibold text-white">Nandini</strong>. A full-stack engineer merging high-performance MERN architecture with intelligent AI integrations to build experiences that feel like magic.
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-wrap items-center gap-6"
-          >
-            <a href="#projects" className="group relative px-8 py-4 bg-white text-black font-bold text-sm tracking-wide rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+            <a
+              href="#projects"
+              className="group relative px-6 py-3.5 bg-white text-black font-bold text-xs tracking-wider rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+            >
               <span className="relative z-10 flex items-center gap-2">
                 DISCOVER WORK
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-200 via-white to-cyan-200 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
-            
-            <a href="/resume.pdf" className="group flex items-center gap-2 px-8 py-4 glass text-white font-semibold text-sm tracking-wide rounded-full hover:bg-white/10 transition-all border border-white/10 hover:border-purple-500/30">
+
+            <a
+              href="/resume.pdf"
+              download="Nandini_Resume.pdf"
+              className="group flex items-center gap-2 px-6 py-3.5 bg-white/5 backdrop-blur-md text-white font-semibold text-xs tracking-wider rounded-full hover:bg-white/10 transition-all border border-white/10 hover:border-purple-500/40 shadow-lg"
+            >
               <Terminal className="w-4 h-4 text-purple-400 group-hover:text-cyan-400 transition-colors" />
               <span>VIEW_RESUME</span>
             </a>
           </motion.div>
-        </div>
-        
-        {/* Right Column - Interactive Developer ID Card */}
-        <div className="lg:col-span-5 relative w-full h-[400px] lg:h-[600px] flex items-center justify-center perspective-[1200px]"
-             onMouseMove={handleMouseMove}
-             onMouseLeave={handleMouseLeave}
-        >
-          <motion.div
-            style={{ rotateX, rotateY }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, type: "spring" }}
-            className="w-[320px] sm:w-[380px] h-[480px] relative preserve-3d"
-          >
-            {/* Card Background */}
-            <div className="absolute inset-0 rounded-[2.5rem] bg-[#0c0822]/60 border border-purple-500/20 backdrop-blur-2xl shadow-[0_0_50px_rgba(139,92,246,0.15)] hover:border-purple-500/40 transition-colors duration-500 overflow-hidden">
-              
-              {/* Decorative Card Light Streak */}
-              <div className="absolute -top-[40%] -left-[40%] w-[180%] h-[180%] bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08),transparent_50%)] pointer-events-none" />
 
-              {/* Card Header */}
-              <div className="px-8 pt-8 pb-4 border-b border-white/5 relative">
-                <div className="absolute top-0 right-0 p-8 opacity-10">
-                  <Cpu className="w-16 h-16 text-purple-400" />
-                </div>
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-400 p-[1px] mb-6 shadow-[0_0_20px_rgba(139,92,246,0.4)]">
-                  <div className="w-full h-full bg-black rounded-xl flex items-center justify-center">
-                    <Code2 className="w-6 h-6 text-white" />
-                  </div>
-                </div>
-                <p className="font-mono text-xs text-purple-400 mb-1">ID // 0xNANDINI</p>
-                <h3 className="text-2xl font-bold text-white tracking-wide font-sans">Developer.Card</h3>
-              </div>
-              
-              {/* Card Body */}
-              <div className="p-8">
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                    <span className="font-mono text-xs text-gray-500">CLASS</span>
-                    <span className="font-semibold text-sm text-cyan-300">Full-Stack Engineer</span>
-                  </div>
-                  <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                    <span className="font-mono text-xs text-gray-500">STACK</span>
-                    <span className="font-semibold text-sm text-purple-300">MERN + AI</span>
-                  </div>
-                  <div className="flex justify-between items-center pb-2">
-                    <span className="font-mono text-xs text-gray-500">LOCATION</span>
-                    <div className="flex items-center gap-1 font-semibold text-sm text-gray-200">
-                      <Globe className="w-3 h-3 text-cyan-400" />
-                      India
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Holographic Element */}
-                <div className="mt-8 relative h-20 w-full rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-                  <div className="flex items-center gap-4">
-                    {[1, 2, 3, 4].map((i) => (
-                      <motion.div
-                        key={i}
-                        animate={{ height: [12, 36, 12] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
-                        className="w-1.5 bg-gradient-to-b from-purple-500 to-cyan-400 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.8)]"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
+          {/* Tags list */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-wrap items-center justify-center gap-x-4 md:gap-x-6 gap-y-3 text-xs md:text-sm text-gray-300 font-medium mt-12 bg-purple-950/10 backdrop-blur-sm border border-purple-500/10 py-3 px-6 rounded-2xl md:rounded-full shadow-[0_0_30px_rgba(168,85,247,0.03)]"
+          >
+            <div className="flex items-center gap-2 group cursor-pointer hover:text-white transition-colors">
+              <Code2 className="w-4 h-4 text-purple-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.6)] transition-all" />
+              <span>Problem Solver</span>
             </div>
             
-            {/* Floating Elements (3D pop-out effect) */}
-            <motion.div 
-              style={{ translateZ: 50 }} 
-              className="absolute -right-6 top-20 bg-[#0e0a2b]/85 border border-purple-500/30 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-[0_10px_25px_rgba(139,92,246,0.15)]"
-            >
-              <span className="font-mono text-xs text-purple-300 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse shadow-[0_0_6px_#a78bfa]" />
-                React.js Active
-              </span>
-            </motion.div>
-            
-            <motion.div 
-              style={{ translateZ: 80 }} 
-              className="absolute -left-8 bottom-32 bg-[#0c0824]/85 border border-cyan-500/30 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-[0_10px_25px_rgba(6,182,212,0.15)]"
-            >
-              <span className="font-mono text-xs text-cyan-300 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_#22d3ee]" />
-                Node Backend
-              </span>
-            </motion.div>
+            <span className="text-purple-500/60 hidden sm:inline select-none">•</span>
+
+            <div className="flex items-center gap-2 group cursor-pointer hover:text-white transition-colors">
+              <Lightbulb className="w-4 h-4 text-pink-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(236,72,153,0.6)] transition-all" />
+              <span>Tech Enthusiast</span>
+            </div>
+
+            <span className="text-purple-500/60 hidden sm:inline select-none">•</span>
+
+            <div className="flex items-center gap-2 group cursor-pointer hover:text-white transition-colors">
+              <Brain className="w-4 h-4 text-indigo-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.6)] transition-all" />
+              <span>AI Explorer</span>
+            </div>
+
+            <span className="text-purple-500/60 hidden sm:inline select-none">•</span>
+
+            <div className="flex items-center gap-2 group cursor-pointer hover:text-white transition-colors">
+              <Rocket className="w-4 h-4 text-cyan-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.6)] transition-all" />
+              <span>Lifelong Learner</span>
+            </div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Floating Scroll Indicator to make scroll attractive */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ delay: 1.5, duration: 2.5, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none z-10"
-      >
-        <span className="text-[10px] font-mono tracking-[0.3em] text-gray-500 uppercase">SCROLL_DOWN</span>
-        <div className="w-6 h-10 border border-purple-500/30 rounded-full flex justify-center p-1.5 backdrop-blur-sm bg-black/10">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1 h-2 rounded-full bg-cyan-400"
-          />
-        </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
-

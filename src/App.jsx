@@ -1,13 +1,13 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import WhyHireMe from './components/WhyHireMe';
-import Contact from './components/Contact';
-import ScrollProgress from './components/ScrollProgress';
-import CustomCursor from './components/CustomCursor';
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Experience from "./components/Experience";
+import WhyHireMe from "./components/WhyHireMe";
+import Contact from "./components/Contact";
+import ScrollProgress from "./components/ScrollProgress";
+import CustomCursor from "./components/CustomCursor";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <ScrollProgress />
       <CustomCursor />
       <Navbar />
-      
+
       <main className="relative">
         {/* Background ambient light blobs to make scroll attractive */}
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-500/10 blur-[150px] rounded-full pointer-events-none -z-10" />
@@ -23,7 +23,7 @@ function App() {
         <div className="absolute top-[45%] left-1/3 w-[550px] h-[550px] bg-pink-500/5 blur-[160px] rounded-full pointer-events-none -z-10" />
         <div className="absolute top-[70%] right-1/3 w-[650px] h-[650px] bg-indigo-500/5 blur-[200px] rounded-full pointer-events-none -z-10" />
         <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-purple-500/10 blur-[150px] rounded-full pointer-events-none -z-10" />
-        
+
         <Hero />
         <About />
         <Skills />

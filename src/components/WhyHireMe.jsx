@@ -6,42 +6,42 @@ const strengths = [
     title: 'Creative UI Development',
     description: 'Crafting visually stunning, interactive, and modern interfaces that leave a lasting impression.',
     icon: Palette,
-    className: 'md:col-span-2 md:row-span-2 bg-gradient-to-br from-purple-500/10 to-pink-500/10 hover:border-purple-500/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]',
+    className: 'md:col-span-2 md:row-span-2 md:col-start-1 md:row-start-1 bg-gradient-to-br from-purple-500/10 to-pink-500/10 hover:border-purple-500/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]',
     iconColor: 'text-purple-400'
   },
   {
     title: 'AI Integration',
     description: 'Leveraging cutting-edge AI integrations to build context-aware, smart user applications.',
     icon: BrainCircuit,
-    className: 'md:col-span-1 md:row-span-1 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]',
+    className: 'md:col-span-1 md:row-span-1 md:col-start-3 md:row-start-1 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]',
     iconColor: 'text-cyan-400'
   },
   {
     title: 'Backend Architecture',
     description: 'Designing highly scalable, secure APIs and database management systems.',
     icon: Server,
-    className: 'md:col-span-1 md:row-span-1 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 hover:border-indigo-500/40 hover:shadow-[0_0_30px_rgba(99,102,241,0.25)]',
+    className: 'md:col-span-1 md:row-span-1 md:col-start-4 md:row-start-1 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 hover:border-indigo-500/40 hover:shadow-[0_0_30px_rgba(99,102,241,0.25)]',
     iconColor: 'text-indigo-400'
   },
   {
     title: 'Problem Solving',
     description: 'Solving complex engineering bottlenecks with clean, optimized algorithmic code.',
     icon: Lightbulb,
-    className: 'md:col-span-1 md:row-span-1 bg-gradient-to-br from-pink-500/10 to-purple-500/10 hover:border-pink-500/40 hover:shadow-[0_0_30px_rgba(236,72,153,0.25)]',
+    className: 'md:col-span-1 md:row-span-1 md:col-start-3 md:row-start-2 bg-gradient-to-br from-pink-500/10 to-purple-500/10 hover:border-pink-500/40 hover:shadow-[0_0_30px_rgba(236,72,153,0.25)]',
     iconColor: 'text-pink-400'
   },
   {
     title: 'Adaptive Learning',
     description: 'Swiftly mastering and applying next-gen frameworks to drive developer velocity.',
     icon: Zap,
-    className: 'md:col-span-1 md:row-span-1 bg-gradient-to-br from-cyan-500/10 to-indigo-500/10 hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]',
+    className: 'md:col-span-1 md:row-span-1 md:col-start-4 md:row-start-2 bg-gradient-to-br from-cyan-500/10 to-indigo-500/10 hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]',
     iconColor: 'text-cyan-300'
   },
   {
     title: 'Collaborative Delivery',
     description: 'Integrating with diverse engineering environments to ship high-impact digital experiences.',
     icon: Users,
-    className: 'md:col-span-2 md:row-span-1 bg-gradient-to-br from-purple-500/10 to-indigo-500/10 hover:border-purple-500/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]',
+    className: 'md:col-span-2 md:row-span-1 md:col-start-1 md:row-start-3 bg-gradient-to-br from-purple-500/10 to-indigo-500/10 hover:border-purple-500/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]',
     iconColor: 'text-purple-300'
   }
 ];

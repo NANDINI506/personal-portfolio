@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const navLinks = [
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Why Hire Me', href: '#whyhireme' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Experience", href: "#experience" },
+  { name: "Why Hire Me", href: "#whyhireme" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -29,28 +29,35 @@ export default function Navbar() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
-      animate={{ 
-        y: visible ? 0 : -100, 
-        opacity: visible ? 1 : 0 
+      animate={{
+        y: visible ? 0 : -100,
+        opacity: visible ? 1 : 0,
       }}
       transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
       className="fixed top-0 left-0 right-0 w-full z-50 py-4 md:py-6 transition-all duration-300 px-4"
     >
-      <div className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
-        scrolled 
-          ? 'py-3 px-8 rounded-full bg-[#08051a]/85 backdrop-blur-xl border border-purple-500/20 shadow-[0_0_30px_rgba(139,92,246,0.15)] max-w-4xl' 
-          : 'py-0 max-w-7xl'
-      }`}>
-        <a href="#home" className="interactive text-2xl font-bold tracking-tight text-white hover:text-purple-400 transition-colors flex items-center gap-2">
+      <div
+        className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
+          scrolled
+            ? "py-3 px-8 rounded-full bg-[#08051a]/85 backdrop-blur-xl border border-purple-500/20 shadow-[0_0_30px_rgba(139,92,246,0.15)] max-w-4xl"
+            : "py-0 max-w-7xl"
+        }`}
+      >
+        <a
+          href="#home"
+          className="interactive text-2xl font-bold tracking-tight text-white hover:text-purple-400 transition-colors flex items-center gap-2"
+        >
           <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-[0_0_8px_rgba(168,85,247,0.8)] animate-pulse" />
-          <span className="font-sans font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-purple-200">Nandini</span>
+          <span className="font-sans font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-purple-200">
+            Nandini
+          </span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
