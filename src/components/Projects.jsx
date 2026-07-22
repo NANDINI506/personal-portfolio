@@ -1,115 +1,83 @@
-import { motion } from "framer-motion";
 import { ExternalLink, Code2 } from "lucide-react";
+import SectionHeading from "./SectionHeading";
+import { projectAccents, projects } from "../data/portfolio";
 
-const projects = [
-  {
-    title: "AI-Powered Job Portal",
-    description:
-      "A comprehensive job matching platform integrating FastAPI, MERN stack, and AI/ML technologies. Features intelligent resume analysis, advanced job matching algorithms, and a seamless user experience for both candidates and recruiters.",
-    tech: ["FastAPI", "MERN Stack", "AI/ML", "Python"],
-    liveUrl: "#",
-    githubUrl: "https://github.com/NANDINI506",
-  },
-  {
-    title: "Tourism Website",
-    description:
-      "A fully functional tourism website with dynamic UI features. Implemented interactive pages, structured layout for tourist information, and smooth navigation to explore destinations effectively.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://funvisit.netlify.app",
-    githubUrl: "https://github.com/NANDINI506",
-  },
-  {
-    title: "Online Food Delivery",
-    description:
-      "Responsive online food ordering platform with real-time user interactions. Implemented a dynamic menu, cart management, and a streamlined checkout flow for an intuitive food ordering experience.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    liveUrl: "https://foodycart.netlify.app",
-    githubUrl: "https://github.com/NANDINI506",
-  },
-  {
-    title: "Event Planning Platform",
-    description:
-      "A full-stack event management site with booking and event listing features. Utilized PHP and SQL to securely store and retrieve data, ensuring a reliable and scalable backend for event coordination.",
-    tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL"],
-    liveUrl: "https://omegaparty.netlify.app",
-    githubUrl: "https://github.com/NANDINI506",
-  },
-];
+function ProjectCard({ project }) {
+  const accent = projectAccents[project.title] || "#a78bfa";
+
+  return (
+    <article className="surface-card overflow-hidden flex flex-col h-full group hover:border-white/[0.14] transition-all duration-300 hover:-translate-y-1">
+      <div
+        className="px-6 py-5 border-b border-white/[0.06]"
+        style={{ background: `linear-gradient(135deg, ${accent}18, transparent)` }}
+      >
+        <p className="text-[#d4d4e0] text-sm md:text-base leading-relaxed font-medium">
+          {project.summary}
+        </p>
+      </div>
+
+      <div className="p-6 flex flex-col flex-1">
+        <div className="flex items-start justify-between gap-4 mb-3">
+          <h3 className="font-display text-xl font-bold text-white group-hover:text-[color:var(--accent)] transition-colors">
+            {project.title}
+          </h3>
+          <div className="flex gap-2 shrink-0">
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-[#8b8b9e] hover:text-white hover:border-white/25 transition-colors"
+              title="GitHub"
+            >
+              <Code2 className="w-4 h-4" />
+            </a>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-[#8b8b9e] hover:text-white hover:border-white/25 transition-colors"
+                title="Live demo"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
+          </div>
+        </div>
+
+        <p className="text-[#8b8b9e] text-sm leading-relaxed flex-1 mb-5">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {project.tech.map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1 text-xs font-mono rounded-lg border border-white/10 text-[#c4c4d4]"
+              style={{ borderColor: `${accent}33`, color: accent }}
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-28 relative z-10 font-sans">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-sans tracking-tight">
-            Featured <span className="text-purple-400">Projects</span>
-          </h2>
-          <div className="w-16 h-1 bg-purple-500 mx-auto rounded-full opacity-50" />
-        </motion.div>
+    <section id="projects" className="py-20 md:py-28 border-t border-white/[0.06]">
+      <div className="section-wrap">
+        <SectionHeading
+          number="04 — Projects"
+          title="Things I've built"
+          subtitle="Each project leads with what it does — descriptions instead of screenshots."
+        />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, idx) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, type: "spring", bounce: 0.2 }}
-              className="group relative rounded-2xl overflow-hidden bg-[#0c0822]/40 border border-white/5 shadow-lg hover:border-purple-500/30 hover:shadow-[0_10px_40px_rgba(139,92,246,0.1)] transition-all duration-300 flex flex-col h-full"
-            >
-              {/* Card Info Container */}
-              <div className="p-8 flex flex-col flex-grow relative z-20 backdrop-blur-sm">
-                
-                <div className="flex justify-between items-start mb-6">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-purple-300 transition-colors tracking-wide">
-                    {project.title}
-                  </h3>
-                  <div className="flex gap-3 text-gray-400">
-                    <a
-                      href={project.githubUrl}
-                      className="hover:text-cyan-400 transition-colors"
-                      title="Source Code"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Code2 className="w-5 h-5" />
-                    </a>
-                    {project.liveUrl !== "#" && (
-                      <a
-                        href={project.liveUrl}
-                        className="hover:text-purple-400 transition-colors"
-                        title="Live Demo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                
-                <p className="text-gray-400 text-[15px] mb-8 leading-relaxed flex-grow">
-                  {project.description}
-                </p>
-
-                {/* Tech Pills */}
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1.5 text-xs font-medium font-mono rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+        <div className="grid md:grid-cols-2 gap-5">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </div>
